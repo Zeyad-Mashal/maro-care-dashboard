@@ -334,6 +334,7 @@ const Products = () => {
     setFilterEnBox(filterEn);
     setProductID(_id);
     getFilter(setAllFilter);
+    console.log(colors);
     if (colors.length != 0) {
       for (let index = 0; index < colors.length; index++) {
         const element = colors[index];

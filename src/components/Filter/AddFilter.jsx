@@ -3,21 +3,29 @@ import "./AddFilter.css";
 import getFilter from "../../api/getFilter.api";
 import addFilter from "../../api/addFilter.api";
 import deleteFilter from "../../api/deleteFilter.api";
+import updateFilter from "../../api/updateFilter.api";
 const AddFilter = () => {
   useEffect(() => {
     getFilter(setAllFilter);
   }, []);
 
   const [allFilter, setAllFilter] = useState([]);
-  const [filterAr, setFilterAr] = useState("");
   const [filterEn, setFilterEn] = useState("");
+  const [updateFilterEn, setUpdateFilterEn] = useState("");
+  const [filterAr, setFilterAr] = useState("");
+  const [updateFilterAr, setUpdateFilterAr] = useState("");
   const [loading, setLoading] = useState(false);
   const [Deleteloading, setDelteLoading] = useState(false);
+  const [Updateloading, setUpdateLoading] = useState(false);
   const [filterError, setFilterError] = useState("");
   const [DeletefilterError, setDeleteFilterError] = useState("");
+  const [UpdatefilterError, setUpdateFilterError] = useState("");
   const [filterId, setFilterId] = useState("");
 
-  const openUpdateproduct = () => {
+  const openUpdateproduct = (filterAr, FilterEn, filterId) => {
+    setUpdateFilterAr(filterAr);
+    setUpdateFilterEn(FilterEn);
+    setFilterId(filterId);
     document
       .querySelector(".filter-input-udpate")
       .classList.replace("d-none", "d-block");
@@ -40,17 +48,36 @@ const AddFilter = () => {
   };
   const addFilterHandle = () => {
     setFilterError("");
-    setFilterEn("");
-    setFilterAr("");
     const data = {
       filterName_Ar: filterAr,
       filterName_En: filterEn,
     };
-    addFilter(data, setLoading, setFilterError, setAllFilter);
+    addFilter(
+      data,
+      setLoading,
+      setFilterError,
+      setAllFilter,
+      setFilterAr,
+      setFilterEn
+    );
   };
 
   const handleDeleteFilter = () => {
     deleteFilter(filterId, setDelteLoading, setDeleteFilterError, setAllFilter);
+  };
+
+  const handleUpdateFilter = () => {
+    const data = {
+      filterName_Ar: updateFilterAr,
+      filterName_En: updateFilterEn,
+    };
+    updateFilter(
+      data,
+      setUpdateLoading,
+      setUpdateFilterError,
+      setAllFilter,
+      filterId
+    );
   };
 
   return (
@@ -97,7 +124,13 @@ const AddFilter = () => {
                 <td>
                   <button
                     className="update-filter-btn"
-                    onClick={openUpdateproduct}
+                    onClick={() =>
+                      openUpdateproduct(
+                        item.filterName_Ar,
+                        item.filterName_En,
+                        item._id
+                      )
+                    }
                   >
                     تعديل
                   </button>
@@ -123,9 +156,20 @@ const AddFilter = () => {
           type="text"
           placeholder="اضف الفيلتر    مثال: خالي من ..."
           className="filter-ar"
+          value={updateFilterAr}
+          onChange={(e) => setUpdateFilterAr(e.target.value)}
         />
-        <input type="text" placeholder="Add Filter" className="filter-en" />
-        <button>حفظ</button>
+        <input
+          type="text"
+          placeholder="Add Filter"
+          className="filter-en"
+          value={updateFilterEn}
+          onChange={(e) => setUpdateFilterEn(e.target.value)}
+        />
+        <p className="error-filter">{UpdatefilterError}</p>
+        <button onClick={handleUpdateFilter}>
+          {Updateloading ? <span className="loaderAdd"></span> : "حفظ"}
+        </button>
         <button onClick={closeUpdateProduct}>إلغاء</button>
       </div>
 
