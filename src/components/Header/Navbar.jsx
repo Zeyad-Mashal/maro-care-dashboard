@@ -44,6 +44,9 @@ const Navbar = () => {
               <Link to={"/product"}>المنتجات</Link>
             </li>
             <li>
+              <Link to={"/filter"}>اضافة فيلتر</Link>
+            </li>
+            <li>
               <div class="btn-group dropend w-100 ">
                 <button
                   type="button"

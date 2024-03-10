@@ -17,6 +17,12 @@
   width: 600px;
   text-align: center;
 }
+.filter-container .filter-input-udpate,
+.filter-container .delete-product {
+  position: fixed;
+  top: 30%;
+  right: 30%;
+}
 .filter-input {
   margin-top: 1rem;
   display: flex;
@@ -78,7 +84,8 @@
   margin-top: 0;
 }
 table {
-  width: 100%;
+  min-width: 100%;
+  height: auto;
   font-size: 16px;
   text-align: center;
 }
@@ -94,10 +101,21 @@ th {
   cursor: pointer;
 }
 .update-filter-btn {
-  background-color: green;
+  background-color: #0164aa;
   color: #fff;
 }
 .delete-filter-btn {
   background-color: rgb(223, 0, 0);
   color: #fff;
+}
+.error-filter {
+  color: rgb(223, 0, 0);
+  font-size: 18px;
+  font-weight: bold;
+}
+.delete-product {
+  background-color: #fff;
+  padding: 1rem;
+  box-shadow: 4px 5px 5px #999;
+  top: 30%;
 }

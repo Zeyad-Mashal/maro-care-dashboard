@@ -242,6 +242,9 @@ td:last-child {
   width: 1rem;
   cursor: pointer;
 }
+.product-container .update-prodcut_popup {
+  position: fixed;
+}
 .product-container .delete-product {
   position: fixed;
   right: 40%;
