@@ -13,19 +13,21 @@ import DoneOrdersDetails from './components/OrderSystem/DoneOrdersDetails';
 import RejectedOrders from './components/OrderSystem/RejectedOrders';
 import RejectedOrdersDetails from './components/OrderSystem/RejectedOrdersDetails';
 import AddFilter from './components/Filter/AddFilter';
+import Coupon from './components/Coupon/Coupon';
 function App() {
   return (
     <div className='App'>
 
       <Navbar />
       <Routes>
-        <Route path="/" element={<AnalysisPage />} />
+        <Route index path="/" element={<AnalysisPage />} />
         <Route path="/product" element={<Products />} />
         <Route path="/order/new" element={<NewOrder />} />
         <Route path="/order/checked" element={<CheckedOrders />} />
         <Route path="/order/done" element={<DoneOrders />} />
         <Route path="/order/rejected" element={<RejectedOrders />} />
         <Route path="/filter" element={<AddFilter />} />
+        <Route path="/coupon" element={<Coupon />} />
       </Routes>
     </div>
   );

@@ -47,21 +47,7 @@ const Navbar = () => {
               <Link to={"/filter"}>اضافة فيلتر</Link>
             </li>
             <li>
-              <div class="btn-group dropend w-100 ">
-                <button
-                  type="button"
-                  class="btn"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  الكوبونات
-                </button>
-                <ul class="dropdown-menu">
-                  <li>Hello</li>
-                  <li>Hello</li>
-                  <li>Hello</li>
-                </ul>
-              </div>
+              <Link to={"/coupon"}>ألكوبونات</Link>
             </li>
           </ul>
         </div>
