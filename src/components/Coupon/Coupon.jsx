@@ -87,8 +87,8 @@ const Coupon = () => {
     const data = {
       coupon,
       discount: couponDiscount,
-      startingDate: updateStartingDate,
-      expiryDate: updateExpiryDate,
+      startingDate,
+      expiryDate,
     };
     addCoupon(
       data,
