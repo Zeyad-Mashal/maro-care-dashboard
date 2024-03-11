@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/maro-care-dashboard/static/css/main.e63c5d08.css",
-    "main.js": "/maro-care-dashboard/static/js/main.2c7958ad.js",
+    "main.css": "/maro-care-dashboard/static/css/main.015a74ea.css",
+    "main.js": "/maro-care-dashboard/static/js/main.85b1c428.js",
     "static/media/logo.png": "/maro-care-dashboard/static/media/logo.79a5f787b1de9166fb2d.png",
     "index.html": "/maro-care-dashboard/index.html",
-    "main.e63c5d08.css.map": "/maro-care-dashboard/static/css/main.e63c5d08.css.map",
-    "main.2c7958ad.js.map": "/maro-care-dashboard/static/js/main.2c7958ad.js.map"
+    "main.015a74ea.css.map": "/maro-care-dashboard/static/css/main.015a74ea.css.map",
+    "main.85b1c428.js.map": "/maro-care-dashboard/static/js/main.85b1c428.js.map"
   },
   "entrypoints": [
-    "static/css/main.e63c5d08.css",
-    "static/js/main.2c7958ad.js"
+    "static/css/main.015a74ea.css",
+    "static/js/main.85b1c428.js"
   ]
 }
