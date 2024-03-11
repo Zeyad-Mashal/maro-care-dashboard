@@ -6,6 +6,11 @@ header {
   background-color: #fff;
   border-bottom: 1px solid #999;
   box-shadow: -1px -1px 5px #999;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  z-index: 50;
+  margin-left: 5rem;
 }
 nav {
   display: flex;
