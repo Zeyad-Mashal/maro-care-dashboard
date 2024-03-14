@@ -73,6 +73,9 @@ const Products = () => {
   const [colorBox, setColorBox] = useState([]);
   const [colorStockBox, setColorStockBox] = useState([]);
 
+  const [discount, setDiscount] = useState("");
+  const [updateDiscount, setUpdateDiscount] = useState("");
+
   const addToColorBox = () => {
     setColorBox((current) => [...current, color]);
     setColor("");
@@ -539,6 +542,12 @@ const Products = () => {
                 value={barcode}
                 onChange={(e) => setBarcode(e.target.value)}
               />
+              <input
+                type="text"
+                placeholder="نسبة خصم علي المنتج"
+                value={discount}
+                onChange={(e) => setDiscount(e.target.value)}
+              />
             </div>
             <div className="categorys">
               <select
@@ -823,6 +832,12 @@ const Products = () => {
                 value={barcode}
                 onChange={(e) => setBarcode(e.target.value)}
                 placeholder="باركود المنتج"
+              />
+              <input
+                type="text"
+                placeholder="نسبة الخصم علي المنتج"
+                value={updateDiscount}
+                onChange={(e) => setUpdateDiscount(e.target.value)}
               />
             </div>
             <div className="categorys">

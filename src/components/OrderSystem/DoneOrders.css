@@ -27,3 +27,11 @@
 .search-box input {
   width: 100%;
 }
+.done-orders .details {
+  width: 90%;
+  margin-top: 1rem;
+}
+.done_orders_details {
+  width: 90%;
+  margin-top: 1rem;
+}

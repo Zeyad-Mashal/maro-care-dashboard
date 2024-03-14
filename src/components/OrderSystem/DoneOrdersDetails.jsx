@@ -5,21 +5,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 import "./DoneOrders.css";
 const DoneOrdersDetails = () => {
-  const openDeleteproduct = () => {
+  const openRejectedProduct = () => {
     document
-      .querySelector(".delete-product")
+      .querySelector(".rejected_check")
       .classList.replace("d-none", "d-block");
-    document
-      .querySelector(".prodcuts-view")
-      .classList.replace("d-block", "d-none");
   };
-  const closeDeleteProduct = () => {
+  const closeRejectedproduct = () => {
     document
-      .querySelector(".delete-product")
+      .querySelector(".rejected_check")
       .classList.replace("d-block", "d-none");
-    document
-      .querySelector(".prodcuts-view")
-      .classList.replace("d-none", "d-block");
   };
   return (
     <div className="order-container">
@@ -42,153 +36,31 @@ const DoneOrdersDetails = () => {
           <button>إلغاء</button>
         </div>
       </div>
-      <div className="order-view w-100">
-        <h2 className="mt-4">تفاصيل الطلب المكتملة</h2>
-        <table>
-          <tr>
-            <th>الصورة</th>
-            <th>الاسم</th>
-            <th>الباركود</th>
-            <th>البراند</th>
-            <th>الفئة</th>
-            <th>اجمالي السعر</th>
-            <th>الكمية المطلوبة</th>
-            <th>الالوان</th>
-            <th>التفاصيل</th>
-          </tr>
-          <tr>
-            <td>
-              <img src={image} alt="" width={100} />
-            </td>
-            <td>
-              <h4>اسم المنتج</h4>
-            </td>
-            <td>
-              <p>123456789</p>
-            </td>
-            <td>البراند</td>
-            <td>العناية الليلة</td>
-            <td>300</td>
-            <td>5 قطع</td>
-            <td>الاسود و الاحمر</td>
-            <td>
-              <div class="btn-group dropend w-100">
-                <button
-                  type="button"
-                  class="btn"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  <FontAwesomeIcon icon={faEllipsisVertical} />
-                </button>
-                <ul class="dropdown-menu">
-                  <li>
-                    <a href="#">تفاصيل المنتج</a>
-                  </li>
-                  <li onClick={openDeleteproduct}>
-                    <a>حذف</a>
-                  </li>
-                </ul>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <img src={image} alt="" width={100} />
-            </td>
-            <td>
-              <h4>اسم المنتج</h4>
-            </td>
-            <td>
-              <p>123456789</p>
-            </td>
-            <td>البراند</td>
-            <td>العناية الليلة</td>
-            <td>300</td>
-            <td>5 قطع</td>
-            <td>الاسود و الاحمر</td>
-            <td>
-              <div class="btn-group dropend w-100">
-                <button
-                  type="button"
-                  class="btn"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  <FontAwesomeIcon icon={faEllipsisVertical} />
-                </button>
-                <ul class="dropdown-menu">
-                  <li>تفاصيل المنتج</li>
-                  <li>حذق</li>
-                </ul>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <img src={image} alt="" width={100} />
-            </td>
-            <td>
-              <h4>اسم المنتج</h4>
-            </td>
-            <td>
-              <p>123456789</p>
-            </td>
-            <td>البراند</td>
-            <td>العناية الليلة</td>
-            <td>300</td>
-            <td>5 قطع</td>
-            <td>الاسود و الاحمر</td>
-            <td>
-              <div class="btn-group dropend w-100">
-                <button
-                  type="button"
-                  class="btn"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  <FontAwesomeIcon icon={faEllipsisVertical} />
-                </button>
-                <ul class="dropdown-menu">
-                  <li>تفاصيل المنتج</li>
-                  <li>حذق</li>
-                </ul>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <img src={image} alt="" width={100} />
-            </td>
-            <td>
-              <h4>اسم المنتج</h4>
-            </td>
-            <td>
-              <p>123456789</p>
-            </td>
-            <td>البراند</td>
-            <td>العناية الليلة</td>
-            <td>300</td>
-            <td>5 قطع</td>
-            <td>الاسود و الاحمر</td>
-            <td>
-              <div class="btn-group dropend w-100">
-                <button
-                  type="button"
-                  class="btn"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  <FontAwesomeIcon icon={faEllipsisVertical} />
-                </button>
-                <ul class="dropdown-menu">
-                  <li>تفاصيل المنتج</li>
-                  <li>حذق</li>
-                </ul>
-              </div>
-            </td>
-          </tr>
-        </table>
+      <div className="done-orders done_orders_details">
+        <div className="done-ordes-holder">
+          <table>
+            <tr>
+              <th>الصورة</th>
+              <th>الباركود</th>
+              <th>البراند</th>
+              <th>الفئة</th>
+              <th>اجمالي السعر</th>
+              <th>الكمية المطلوبة</th>
+              <th>الالوان المطلوبة</th>
+            </tr>
+            <tr>
+              <td>
+                <img src={image} width={100} />
+              </td>
+              <td>123456794426</td>
+              <td>البراند</td>
+              <td>الفئة</td>
+              <td>500</td>
+              <td>2</td>
+              <td>#000</td>
+            </tr>
+          </table>
+        </div>
       </div>
     </div>
   );

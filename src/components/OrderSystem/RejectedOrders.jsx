@@ -3,6 +3,7 @@ import image from "../../images/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 import "./RejectedOrders.css";
+import { Link } from "react-router-dom";
 const RejectedOrders = () => {
   const openDeleteproduct = () => {
     document
@@ -58,239 +59,19 @@ const RejectedOrders = () => {
                   </button>
                   <ul class="dropdown-menu">
                     <li>
-                      <a href="#">تفاصيل الطلب</a>
+                      <Link to={"/order/rejected/details"}>تفاصيل الطلب</Link>
                     </li>
-                    <li onClick={openDeleteproduct}>حذف</li>
-                  </ul>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <h4>اسم العميل</h4>
-              </td>
-              <td className="td-rejected">
-                <p className="rejected">ملغية</p>
-              </td>
-              <td>400</td>
-              <td>2024/3/6</td>
-              <td>A12b24d</td>
-              <td>
-                <div class="btn-group dropend w-100">
-                  <button
-                    type="button"
-                    class="btn"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    <FontAwesomeIcon icon={faEllipsisVertical} />
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li>تفاصيل الطلب</li>
-                    <li>حذف</li>
-                  </ul>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <h4>اسم العميل</h4>
-              </td>
-              <td className="td-rejected">
-                <p className="rejected">ملغية</p>
-              </td>
-              <td>400</td>
-              <td>2024/3/6</td>
-              <td>A12b24d</td>
-              <td>
-                <div class="btn-group dropend w-100">
-                  <button
-                    type="button"
-                    class="btn"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    <FontAwesomeIcon icon={faEllipsisVertical} />
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li>تفاصيل الطلب</li>
-                    <li>حذف</li>
-                  </ul>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <h4>اسم العميل</h4>
-              </td>
-              <td className="td-rejected">
-                <p className="rejected">ملغية</p>
-              </td>
-              <td>400</td>
-              <td>2024/3/6</td>
-              <td>A12b24d</td>
-              <td>
-                <div class="btn-group dropend w-100">
-                  <button
-                    type="button"
-                    class="btn"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    <FontAwesomeIcon icon={faEllipsisVertical} />
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li>تفاصيل الطلب</li>
-                    <li>حذف</li>
-                  </ul>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <h4>اسم العميل</h4>
-              </td>
-              <td className="td-rejected">
-                <p className="rejected">ملغية</p>
-              </td>
-              <td>400</td>
-              <td>2024/3/6</td>
-              <td>A12b24d</td>
-              <td>
-                <div class="btn-group dropend w-100">
-                  <button
-                    type="button"
-                    class="btn"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    <FontAwesomeIcon icon={faEllipsisVertical} />
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li>تفاصيل الطلب</li>
-                    <li>حذف</li>
-                  </ul>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <h4>اسم العميل</h4>
-              </td>
-              <td className="td-rejected">
-                <p className="rejected">ملغية</p>
-              </td>
-              <td>400</td>
-              <td>2024/3/6</td>
-              <td>A12b24d</td>
-              <td>
-                <div class="btn-group dropend w-100">
-                  <button
-                    type="button"
-                    class="btn"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    <FontAwesomeIcon icon={faEllipsisVertical} />
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li>تفاصيل الطلب</li>
-                    <li>حذف</li>
-                  </ul>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <h4>اسم العميل</h4>
-              </td>
-              <td className="td-rejected">
-                <p className="rejected">ملغية</p>
-              </td>
-              <td>400</td>
-              <td>2024/3/6</td>
-              <td>A12b24d</td>
-              <td>
-                <div class="btn-group dropend w-100">
-                  <button
-                    type="button"
-                    class="btn"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    <FontAwesomeIcon icon={faEllipsisVertical} />
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li>تفاصيل الطلب</li>
-                    <li>حذف</li>
-                  </ul>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <h4>اسم العميل</h4>
-              </td>
-              <td className="td-rejected">
-                <p className="rejected">ملغية</p>
-              </td>
-              <td>400</td>
-              <td>2024/3/6</td>
-              <td>A12b24d</td>
-              <td>
-                <div class="btn-group dropend w-100">
-                  <button
-                    type="button"
-                    class="btn"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    <FontAwesomeIcon icon={faEllipsisVertical} />
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li>تفاصيل الطلب</li>
-                    <li>حذف</li>
-                  </ul>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <h4>اسم العميل</h4>
-              </td>
-              <td className="td-rejected">
-                <p className="rejected">ملغية</p>
-              </td>
-              <td>400</td>
-              <td>2024/3/6</td>
-              <td>A12b24d</td>
-              <td>
-                <div class="btn-group dropend w-100">
-                  <button
-                    type="button"
-                    class="btn"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    <FontAwesomeIcon icon={faEllipsisVertical} />
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li>تفاصيل الطلب</li>
-                    <li>حذف</li>
                   </ul>
                 </div>
               </td>
             </tr>
           </table>
         </div>
-        {/* delete product popup */}
-        <div className="delete-product d-none ">
-          <h1>هل تريد حذف هذا المنتج ؟</h1>
-          <div>
-            <button>نعم</button>
-            <button onClick={closeDeleteProduct}>لا</button>
-          </div>
-        </div>
+      </div>
+      {/* pagination */}
+      <div className="pagination-controls">
+        <button>التالي</button>
+        <button>السابق</button>
       </div>
     </div>
   );

@@ -49,6 +49,9 @@ const Navbar = () => {
             <li>
               <Link to={"/coupon"}>ألكوبونات</Link>
             </li>
+            <li>
+              <Link to={"/discountbrand"}>خصم البراندات</Link>
+            </li>
           </ul>
         </div>
       </nav>

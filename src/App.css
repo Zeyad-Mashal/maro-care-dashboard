@@ -11,4 +11,5 @@ body {
   display: flex;
   gap: 1rem;
   background-color: #eee;
+  width: 100%;
 }

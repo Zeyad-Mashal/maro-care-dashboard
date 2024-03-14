@@ -1,5 +1,6 @@
 .orders-container {
   width: 100%;
+  margin-right: 12rem;
   padding: 2rem 1rem;
 }
 table,
@@ -37,4 +38,36 @@ td {
 }
 .search-box input {
   width: 100%;
+}
+.orders-container .checked_order {
+  position: fixed;
+  top: 30%;
+  right: 45%;
+}
+.checked_order {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 4px 5px 5px #999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 400px;
+}
+.checked_order div {
+  margin-top: 2rem;
+  display: flex;
+  gap: 2rem;
+}
+.checked_order div button {
+  padding: 10px 20px;
+  border: 1px solid #999;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.3s ease;
+}
+.checked_order div button:nth-of-type(2):hover {
+  background-color: red;
 }

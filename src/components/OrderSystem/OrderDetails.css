@@ -4,6 +4,7 @@
   flex-direction: column;
   justify-content: start;
   align-items: center;
+  margin-right: 12rem;
 }
 .order-box {
   background-color: #fff;
@@ -58,4 +59,21 @@
   width: 100%;
   padding: 1rem 0 1rem 2rem;
   text-align: center;
+}
+.new-ordes-holder .details {
+  width: 90%;
+  margin-top: 1rem;
+}
+.checked-orders .details {
+  margin-top: 1rem;
+  width: 90%;
+}
+.rejected-orders_details {
+  width: 90%;
+  margin-top: 1rem;
+}
+.new-orders_details,
+.done_orders_detalis {
+  width: 90%;
+  margin-top: 1rem;
 }
