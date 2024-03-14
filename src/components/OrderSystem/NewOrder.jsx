@@ -1,17 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import image from "../../images/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 import "./NewOrder.css";
 import OrderDetails from "./OrderDetails";
 import { Link } from "react-router-dom";
+import getNewOrder from "../../api/getNewOrder.api";
+import checkedNew from "../../api/checkedNew.api";
+import rejectedNew from "../../api/rejectedNew.api";
 const NewOrder = () => {
-  const opneCheckedproduct = () => {
+  useEffect(() => {
+    getAllNewOrders();
+  }, []);
+  const [allOrders, setAllOrders] = useState([]);
+  const [pageNumber, setPageNumber] = useState(1);
+  const [orderId, setOrderId] = useState("");
+  const [checkedLoading, setCheckedLoading] = useState(false);
+  const [checkedError, setCheckedError] = useState("");
+  const opneCheckedproduct = (orderId) => {
+    setOrderId(orderId);
     document
       .querySelector(".checked_order")
       .classList.replace("d-none", "d-block");
   };
-  const opneRejectedproduct = () => {
+  const opneRejectedproduct = (orderId) => {
+    setOrderId(orderId);
     document
       .querySelector(".rejected_check")
       .classList.replace("d-none", "d-block");
@@ -25,6 +38,21 @@ const NewOrder = () => {
     document
       .querySelector(".rejected_check")
       .classList.replace("d-block", "d-none");
+  };
+  const getAllNewOrders = () => {
+    getNewOrder(setAllOrders, 1);
+  };
+  const checkedOrderNew = () => {
+    checkedNew(setCheckedLoading, setCheckedError, setAllOrders, orderId);
+  };
+  const rejectedOrderNew = () => {
+    rejectedNew(
+      setCheckedLoading,
+      setCheckedError,
+      setAllOrders,
+      orderId,
+      "New"
+    );
   };
   return (
     <div className="orders-container">
@@ -42,52 +70,69 @@ const NewOrder = () => {
               <th>كود الطلب</th>
               <th>التفاصيل</th>
             </tr>
-            <tr>
-              <td>
-                <h5>اسم العميل</h5>
-              </td>
-              <td className="td-new">
-                <p className="new">جديد</p>
-              </td>
-              <td>400</td>
-              <td>2024/3/6</td>
-              <td>A12b24d</td>
-              <td>
-                <div class="btn-group dropend w-100">
-                  <button
-                    type="button"
-                    class="btn"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    <FontAwesomeIcon icon={faEllipsisVertical} />
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li>
-                      <Link to={"/order/new/details"}>تفاصيل الطلب</Link>
-                    </li>
-                    <li onClick={opneCheckedproduct}>تأكيد الطلب</li>
-                    <li onClick={opneRejectedproduct}>إلغاء الطلب</li>
-                  </ul>
-                </div>
-              </td>
-            </tr>
+            {allOrders.map((item) => {
+              return (
+                <tr>
+                  <td>
+                    <h5>{item.userName}</h5>
+                  </td>
+                  <td className="td-new">
+                    <p className="new">جديد</p>
+                  </td>
+                  <td>{item.totalWithoutShipping}</td>
+                  <td>{item.orderDate}</td>
+                  <td>{item._id}</td>
+                  <td>
+                    <div class="btn-group dropend w-100">
+                      <button
+                        type="button"
+                        class="btn"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        <FontAwesomeIcon icon={faEllipsisVertical} />
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li>
+                          <Link to={`/order/new/details/${item._id}`}>
+                            تفاصيل الطلب
+                          </Link>
+                        </li>
+                        <li onClick={() => opneCheckedproduct(item._id)}>
+                          تأكيد الطلب
+                        </li>
+                        <li onClick={() => opneRejectedproduct(item._id)}>
+                          إلغاء الطلب
+                        </li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+              );
+            })}
           </table>
         </div>
       </div>
       {/* checked */}
-      <div className="checked_order d-none ">
+      <div className="checked_order d-none">
         <h3>هل تريد تأكيد الطلب ؟</h3>
+        <p className="error">{checkedError}</p>
         <div>
-          <button>نعم</button>
+          <button onClick={checkedOrderNew}>
+            {" "}
+            {checkedLoading ? <span className="loaderAdd"></span> : "نعم"}
+          </button>
           <button onClick={closeCheckedproduct}>لا</button>
         </div>
       </div>
       {/* rejected */}
       <div className="checked_order rejected_check d-none ">
         <h3>هل تريد إلغاء الطلب ؟</h3>
+        <p>{checkedError}</p>
         <div>
-          <button>نعم</button>
+          <button onClick={rejectedOrderNew}>
+            {checkedLoading ? <span className="loaderAdd"></span> : "نعم"}
+          </button>
           <button onClick={closeRejectedproduct}>لا</button>
         </div>
       </div>

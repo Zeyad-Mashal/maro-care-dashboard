@@ -24,7 +24,7 @@ function App() {
         <Route index path="/" element={<OrderDetails />} />
         <Route path="/product" element={<Products />} />
         <Route path="/order/new" element={<NewOrder />} />
-        <Route path="/order/new/details" element={<OrderDetails />} />
+        <Route path="/order/new/details/:orderId" element={<OrderDetails />} />
         <Route path="/order/checked" element={<CheckedOrders />} />
         <Route path="/order/checked/details" element={<CheckedOrdersDetails />} />
         <Route path="/order/done" element={<DoneOrders />} />
