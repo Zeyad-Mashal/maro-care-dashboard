@@ -79,7 +79,7 @@
   flex-wrap: wrap;
 }
 .add-prodcut-content .name-inputs input,
-.add-prodcut-content .desc-inputs input {
+.add-prodcut-content .desc-inputs textarea {
   width: 100%;
   padding: 10px;
   border-radius: 10px;

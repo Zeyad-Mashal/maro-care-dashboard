@@ -510,13 +510,13 @@ const Products = () => {
               />
             </div>
             <div className="desc-inputs">
-              <input
+              <textarea
                 type="text"
                 placeholder="وصف المنتج"
                 value={pDescAr}
                 onChange={(e) => setpDescAr(e.target.value)}
               />
-              <input
+              <textarea
                 type="text"
                 placeholder="product description"
                 value={pDescEn}
@@ -541,6 +541,12 @@ const Products = () => {
                 placeholder="باركود المنتج"
                 value={barcode}
                 onChange={(e) => setBarcode(e.target.value)}
+              />
+              <input
+                type="text"
+                placeholder="نسبة الخصم علي المنتج"
+                value={discount}
+                onChange={(e) => setDiscount(e.target.value)}
               />
             </div>
             <div className="categorys">
@@ -795,13 +801,13 @@ const Products = () => {
               />
             </div>
             <div className="desc-inputs">
-              <input
+              <textarea
                 type="text"
                 value={pDescAr}
                 onChange={(e) => setpDescAr(e.target.value)}
                 placeholder="وصف المنتج"
               />
-              <input
+              <textarea
                 type="text"
                 value={pDescEn}
                 onChange={(e) => setpDescEn(e.target.value)}
@@ -826,6 +832,12 @@ const Products = () => {
                 value={barcode}
                 onChange={(e) => setBarcode(e.target.value)}
                 placeholder="باركود المنتج"
+              />
+              <input
+                type="text"
+                value={updateDiscount}
+                onChange={(e) => setUpdateDiscount(e.target.value)}
+                placeholder="نسبة الخصم علي المنتج"
               />
             </div>
             <div className="categorys">
