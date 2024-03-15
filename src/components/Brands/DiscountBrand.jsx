@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./DiscountBrand.css";
 import brandAr from "../data/brand_ar";
+import image from "../../images/logo.png";
 const DiscountBrand = () => {
   const [discount, setDiscount] = useState("");
   const [startingDate, setStartingDate] = useState("");
@@ -29,6 +30,16 @@ const DiscountBrand = () => {
     document
       .querySelector(".delete_popup")
       .classList.replace("d-flex", "d-none");
+  };
+  const openReviewBrand = () => {
+    document
+      .querySelector(".review_popup")
+      .classList.replace("d-none", "d-block");
+  };
+  const closeReviewPopup = () => {
+    document
+      .querySelector(".review_popup")
+      .classList.replace("d-block", "d-none");
   };
   return (
     <div className="brand-container">
@@ -77,7 +88,7 @@ const DiscountBrand = () => {
         </div>
         <div className="done-btns">
           {" "}
-          <button>حفظ</button>
+          <button onClick={openReviewBrand}>مراجعة المنتجات</button>
         </div>
       </div>
       <div className="view-table-discount">
@@ -186,6 +197,67 @@ const DiscountBrand = () => {
           <button>نعم</button>
           <button onClick={closeDeleteBrand}>لا</button>
         </div>
+      </div>
+      {/* review brand products */}
+      <div className="review_popup d-none">
+        <h3>قم بتأكيد المنتجات قبل تنفيذ الخصم</h3>
+        <div className="reviwe_table_popup">
+          <table>
+            <tr>
+              <th>الصورة</th>
+              <th>الاسم</th>
+              <th>الباركود</th>
+              <th>السعر</th>
+              <th>تأكيد</th>
+            </tr>
+            <tr>
+              <td>
+                <img src={image} width={120} />
+              </td>
+              <td>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Amet
+                maiores tempora
+              </td>
+              <td>132456796869645</td>
+              <td>450</td>
+              <td>
+                <input type="checkbox" checked></input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <img src={image} width={120} />
+              </td>
+              <td>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Amet
+                maiores tempora
+              </td>
+              <td>132456796869645</td>
+              <td>450</td>
+              <td>
+                <input type="checkbox" checked></input>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <img src={image} width={120} />
+              </td>
+              <td>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Amet
+                maiores tempora
+              </td>
+              <td>132456796869645</td>
+              <td>450</td>
+              <td>
+                <input type="checkbox" checked></input>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <button>تمت المراجعة</button>
+        <button className="close" onClick={closeReviewPopup}>
+          إلغاء
+        </button>
       </div>
     </div>
   );

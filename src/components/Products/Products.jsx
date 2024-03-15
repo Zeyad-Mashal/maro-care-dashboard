@@ -813,13 +813,13 @@ const Products = () => {
             </div>
             <div className="price-inputs">
               <input
-                type="text"
+                type="number"
                 value={costPrice}
                 onChange={(e) => setCostPrice(e.target.value)}
                 placeholder="تكلفة المنتج"
               />
               <input
-                type="text"
+                type="number"
                 value={Price}
                 onChange={(e) => setPrice(e.target.value)}
                 placeholder="سعر بيع المنتج"
