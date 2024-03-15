@@ -47,7 +47,6 @@ const Products = () => {
   const [pBrandAr, setpBrandAr] = useState("");
   const [pBrandEn, setpBrandEn] = useState("");
   const [Price, setPrice] = useState("");
-  const [priceBeforeDisc, setpriceBeforeDisc] = useState("");
   const [section, setSection] = useState("");
   const [error, setError] = useState("");
   const [searchError, setSearchError] = useState("");
@@ -74,7 +73,6 @@ const Products = () => {
   const [colorStockBox, setColorStockBox] = useState([]);
 
   const [discount, setDiscount] = useState("");
-  const [updateDiscount, setUpdateDiscount] = useState("");
 
   const addToColorBox = () => {
     setColorBox((current) => [...current, color]);
@@ -151,9 +149,8 @@ const Products = () => {
         productData.append("productCode", barcode);
         productData.append("stock", mainStock);
         productData.append("costPrice", costPrice);
-        if (priceBeforeDisc != "")
-          productData.append("priceBeforeDiscount", priceBeforeDisc);
-        else productData.append("priceBeforeDiscount", 0);
+        if (discount != "") productData.append("discountPercentage", discount);
+        else productData.append("discountPercentage", 0);
         if (section != "") productData.append("sectionType", section);
         if (colorBox.length != 0) {
           for (let i = 0; i < colorBox.length; i++) {
@@ -186,7 +183,6 @@ const Products = () => {
   };
 
   const updateProductFunc = () => {
-    console.log("test");
     if (prevImage.length == 0) {
       setError("قم برفع صور المنتج اولا");
     } else {
@@ -230,10 +226,10 @@ const Products = () => {
         productData.append("productCode", barcode);
         productData.append("stock", mainStock);
         productData.append("costPrice", costPrice);
-        if (priceBeforeDisc != "")
-          productData.append("priceBeforeDiscount", priceBeforeDisc);
-        else productData.append("priceBeforeDiscount", 0);
-        if (section != "") productData.append("sectionType", section);
+        if (discount != "") productData.append("discountPercentage", discount);
+        else productData.append("discountPercentage", 0);
+        if (section != "" && section != undefined)
+          productData.append("sectionType", section);
         if (colorBox.length != 0) {
           for (let i = 0; i < colorBox.length; i++) {
             productData.append("colors.name", colorBox[i]);
@@ -278,7 +274,6 @@ const Products = () => {
     setpBrandAr("");
     setpBrandEn("");
     setPrice("");
-    setpriceBeforeDisc("");
     setSection("");
     setPrevImage([]);
     setProductID("");
@@ -317,7 +312,8 @@ const Products = () => {
     filterEn,
     descriptionAr,
     descriptionEn,
-    _id
+    _id,
+    discountPercentage
   ) => {
     setPNameAr(pNameAr);
     setPNameEn(pNameEn);
@@ -336,6 +332,7 @@ const Products = () => {
     setFilter(filterAr);
     setFilterEnBox(filterEn);
     setProductID(_id);
+    setDiscount(discountPercentage);
     getFilter(setAllFilter);
     console.log(colors);
     if (colors.length != 0) {
@@ -835,8 +832,8 @@ const Products = () => {
               />
               <input
                 type="text"
-                value={updateDiscount}
-                onChange={(e) => setUpdateDiscount(e.target.value)}
+                value={discount}
+                onChange={(e) => setDiscount(e.target.value)}
                 placeholder="نسبة الخصم علي المنتج"
               />
             </div>
@@ -1127,7 +1124,8 @@ const Products = () => {
                                 item.translation.en.filter,
                                 item.translation.ar.description,
                                 item.translation.en.description,
-                                item._id
+                                item._id,
+                                item.discountPercentage
                               )
                             }
                           >
