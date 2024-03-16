@@ -65,7 +65,7 @@ const NewOrder = () => {
       <div className="search-box">
         <input
           type="text"
-          placeholder="ابحث بالباركود او الاسم"
+          placeholder="ابحث بكود الطلب"
           value={searchOrderId}
           onChange={(e) => {
             setSearchOrderId(e.target.value);

@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import image from "../../images/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 import "./RejectedOrders.css";
 import { Link } from "react-router-dom";
+import getRejectedOrders from "../../api/getRejectedOrders.api";
+import getAllRejectedSearch from "../../api/getAllRejectedSearch.api";
 const RejectedOrders = () => {
+  useEffect(() => {
+    getAllRejectedOrders();
+  }, []);
+  const [allOrders, setAllOrders] = useState([]);
+  const [searchOrderId, setSearchOrderId] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const openDeleteproduct = () => {
     document
       .querySelector(".delete-product")
@@ -21,53 +30,85 @@ const RejectedOrders = () => {
       .querySelector(".rejected-ordes-holder")
       .classList.replace("d-none", "d-block");
   };
+  const getAllRejectedOrders = () => {
+    getRejectedOrders(setAllOrders, 1);
+  };
+  const handleSearch = () => {
+    getAllRejectedSearch(setError, setLoading, setAllOrders, searchOrderId);
+  };
   return (
     <div className="orders-container">
       <div className="search-box">
-        <input type="text" placeholder="ابحث بالباركود او الاسم" />
-      </div>
-      <div className="rejected-orders">
-        <div className="rejected-ordes-holder">
-          <table>
-            <tr>
-              <th>الاسم</th>
-              <th>حالة الطلب</th>
-              <th>السعر</th>
-              <th>التاريخ</th>
-              <th>كود الطلب</th>
-              <th>التفاصيل</th>
-            </tr>
-            <tr>
-              <td>
-                <h5>اسم العميل</h5>
-              </td>
-              <td className="td-rejected">
-                <p className="rejected">ملغية</p>
-              </td>
-              <td>400</td>
-              <td>2024/3/6</td>
-              <td>A12b24d</td>
-              <td>
-                <div class="btn-group dropend w-100">
-                  <button
-                    type="button"
-                    class="btn"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    <FontAwesomeIcon icon={faEllipsisVertical} />
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li>
-                      <Link to={"/order/rejected/details"}>تفاصيل الطلب</Link>
-                    </li>
-                  </ul>
-                </div>
-              </td>
-            </tr>
-          </table>
+        <input
+          type="text"
+          placeholder="ابحث بكود الطلب"
+          value={searchOrderId}
+          onChange={(e) => {
+            setSearchOrderId(e.target.value);
+            if (e.target.value == "") {
+              getAllRejectedOrders();
+            }
+          }}
+        />
+        <div>
+          <button onClick={handleSearch}>بحث</button>
         </div>
       </div>
+      {loading ? (
+        <span className="loaderSearch"></span>
+      ) : error ? (
+        <p className="error">{error}</p>
+      ) : (
+        <div className="rejected-orders">
+          <div className="rejected-ordes-holder">
+            <table>
+              <tr>
+                <th>الاسم</th>
+                <th>حالة الطلب</th>
+                <th>السعر</th>
+                <th>التاريخ</th>
+                <th>كود الطلب</th>
+                <th>التفاصيل</th>
+              </tr>
+              {allOrders.map((item) => {
+                return (
+                  <tr>
+                    <td>
+                      <h5>{item.userName}</h5>
+                    </td>
+                    <td className="td-rejected">
+                      <p className="rejected">ملغية</p>
+                    </td>
+                    <td>{item.totalWithoutShipping}</td>
+                    <td>{item.orderDate}</td>
+                    <td>{item._id}</td>
+                    <td>
+                      <div class="btn-group dropend w-100">
+                        <button
+                          type="button"
+                          class="btn"
+                          data-bs-toggle="dropdown"
+                          aria-expanded="false"
+                        >
+                          <FontAwesomeIcon icon={faEllipsisVertical} />
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li>
+                            <Link to={`/order/new/details/${item._id}`}>
+                              تفاصيل الطلب
+                            </Link>
+                          </li>
+                        </ul>
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
+            </table>
+          </div>
+        </div>
+      )}
+
       {/* pagination */}
       <div className="pagination-controls">
         <button>التالي</button>

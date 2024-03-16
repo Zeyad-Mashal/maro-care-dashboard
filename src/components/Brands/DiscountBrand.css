@@ -148,12 +148,18 @@ button:hover {
   margin-right: 12rem;
 }
 .review_popup {
+  position: relative;
   background-color: #fff;
   padding: 1rem;
   box-shadow: 4px 5px 5px #999;
   border-radius: 10px;
   width: 83%;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+.review_popup_box {
 }
 .review_popup h3 {
   margin-bottom: 2rem;

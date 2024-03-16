@@ -82,12 +82,12 @@ const OrderDetails = () => {
             return (
               <tr>
                 <td>
-                  <img src={item.product.images[0]} width={100} />
+                  <img src={item.product?.images[0]} width={100} />
                 </td>
                 <td className="name-box">
-                  {item.product.translation.ar.productName}
+                  {item.product?.translation.ar.productName}
                 </td>
-                <td>{item.product.productCode}</td>
+                <td>{item.product?.productCode}</td>
                 <td>{item.totalPrice / item.count}</td>
                 <td>{item.count}</td>
                 <td>{item.totalPrice}</td>

@@ -1,16 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import image from "../../images/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 import "./CheckedOrders.css";
 import { Link } from "react-router-dom";
+import getCheckedOrders from "../../api/getCheckedOrders.api";
+import rejectedNew from "../../api/rejectedNew.api";
+import addToDone from "../../api/addToDone.api";
+import getAllCheckedSearch from "../../api/getAllCheckedSearch.api";
 const CheckedOrders = () => {
-  const openDoneProduct = () => {
+  useEffect(() => {
+    getAllCheckOrders();
+  }, []);
+  const [allOrders, setAllOrders] = useState([]);
+  const [pageNumber, setPageNumber] = useState(1);
+  const [checkedLoading, setCheckedLoading] = useState(false);
+  const [checkedError, setCheckedError] = useState("");
+  const [orderId, setOrderId] = useState("");
+  const [searchOrderId, setSearchOrderId] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const openDoneProduct = (orderId) => {
+    setOrderId(orderId);
     document
       .querySelector(".checked_order_done")
       .classList.replace("d-none", "d-block");
   };
-  const openRejectedProduct = () => {
+  const openRejectedProduct = (orderId) => {
+    setOrderId(orderId);
     document
       .querySelector(".rejected_check")
       .classList.replace("d-none", "d-block");
@@ -25,68 +43,123 @@ const CheckedOrders = () => {
       .querySelector(".rejected_check")
       .classList.replace("d-block", "d-none");
   };
+  const getAllCheckOrders = () => {
+    getCheckedOrders(setAllOrders, 1);
+  };
+  const rejectedOrderNew = () => {
+    rejectedNew(
+      setCheckedLoading,
+      setCheckedError,
+      setAllOrders,
+      orderId,
+      "Processing"
+    );
+  };
+  const handleCompletedOrder = () => {
+    addToDone(setCheckedLoading, setCheckedError, setAllOrders, orderId);
+  };
+  const handleSearch = () => {
+    getAllCheckedSearch(setError, setLoading, setAllOrders, searchOrderId);
+  };
   return (
     <div className="orders-container">
       <div className="search-box">
-        <input type="text" placeholder="ابحث بالباركود او الاسم" />
-      </div>
-      <div className="checked-orders details">
-        <div className="checked-ordes-holder">
-          <table>
-            <tr>
-              <th>الاسم</th>
-              <th>حالة الطلب</th>
-              <th>السعر</th>
-              <th>التاريخ</th>
-              <th>كود الطلب</th>
-              <th>التفاصيل</th>
-            </tr>
-            <tr>
-              <td>
-                <h5>اسم العميل</h5>
-              </td>
-              <td className="td-checked">
-                <p className="checked">مؤكدة</p>
-              </td>
-              <td>400</td>
-              <td>2024/3/6</td>
-              <td>A12b24d</td>
-              <td>
-                <div class="btn-group dropend w-100">
-                  <button
-                    type="button"
-                    class="btn"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    <FontAwesomeIcon icon={faEllipsisVertical} />
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li>
-                      <Link to={"/order/checked/details"}>تفاصيل الطلب</Link>
-                    </li>
-                    <li onClick={openDoneProduct}>أكمال الطلب</li>
-                    <li onClick={openRejectedProduct}>إلغاء الطلب</li>
-                  </ul>
-                </div>
-              </td>
-            </tr>
-          </table>
+        <input
+          type="text"
+          placeholder="ابحث بالكود الطلب"
+          value={searchOrderId}
+          onChange={(e) => {
+            setSearchOrderId(e.target.value);
+            if (e.target.value == "") {
+              getAllCheckOrders();
+            }
+          }}
+        />
+        <div>
+          <button onClick={handleSearch}>بحث</button>
         </div>
       </div>
+
+      {loading ? (
+        <span className="loaderSearch"></span>
+      ) : error ? (
+        <p className="error">{error}</p>
+      ) : (
+        <div className="checked-orders details">
+          <div className="checked-ordes-holder">
+            <table>
+              <tr>
+                <th>الاسم</th>
+                <th>حالة الطلب</th>
+                <th>السعر</th>
+                <th>التاريخ</th>
+                <th>كود الطلب</th>
+                <th>التفاصيل</th>
+              </tr>
+              {allOrders.map((item) => {
+                return (
+                  <tr>
+                    <td>
+                      <h5>{item.userName}</h5>
+                    </td>
+                    <td className="td-checked">
+                      <p className="checked">مؤكدة</p>
+                    </td>
+                    <td>{item.totalWithoutShipping}</td>
+                    <td>{item.orderDate}</td>
+                    <td>{item._id}</td>
+                    <td>
+                      <div class="btn-group dropend w-100">
+                        <button
+                          type="button"
+                          class="btn"
+                          data-bs-toggle="dropdown"
+                          aria-expanded="false"
+                        >
+                          <FontAwesomeIcon icon={faEllipsisVertical} />
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li>
+                            <Link to={`/order/new/details/${item._id}`}>
+                              تفاصيل الطلب
+                            </Link>
+                          </li>
+                          <li onClick={() => openDoneProduct(item._id)}>
+                            أكمال الطلب
+                          </li>
+                          <li onClick={() => openRejectedProduct(item._id)}>
+                            إلغاء الطلب
+                          </li>
+                        </ul>
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
+            </table>
+          </div>
+        </div>
+      )}
+
       {/* done */}
       <div className="checked_order checked_order_done d-none">
         <h3>هل تم اكمال الطلب نهائيا ؟</h3>
         <div>
-          <button>نعم</button>
+          <p className="error">{checkedError}</p>
+          <button onClick={handleCompletedOrder}>
+            {checkedLoading ? <span className="loaderAdd"></span> : "نعم"}
+          </button>
           <button onClick={closeCheckedproduct}>لا</button>
         </div>
       </div>
       {/* rejected */}
       <div className="checked_order rejected_check d-none ">
         <h3>هل تريد إلغاء الطلب ؟</h3>
-        <div>
-          <button>نعم</button>
+        <p className="error">{checkedError}</p>
+        <div className="text-center">
+          <button onClick={rejectedOrderNew}>
+            {checkedLoading ? <span className="loaderAdd"></span> : "نعم"}
+          </button>
           <button onClick={closeRejectedproduct}>لا</button>
         </div>
       </div>

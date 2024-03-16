@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./DiscountBrand.css";
 import brandAr from "../data/brand_ar";
 import image from "../../images/logo.png";
+import reviewDiscountBrand from "../../api/reviewDiscountBrand.api";
 const DiscountBrand = () => {
   const [discount, setDiscount] = useState("");
   const [startingDate, setStartingDate] = useState("");
@@ -11,6 +12,9 @@ const DiscountBrand = () => {
   const [updateStartingDate, setUpdateStartingDate] = useState("");
   const [updateExpiryDate, setUpdateExpiryDate] = useState("");
   const [updateBrandSelect, setupdateBrandSelect] = useState("");
+  const [discountError, setDiscountError] = useState("");
+  const [discountLoading, setDiscountLoading] = useState(false);
+  const [reviewProducts, setReviewProducts] = useState([]);
   const openUpdateBrand = () => {
     document
       .querySelector(".update_popup")
@@ -31,10 +35,19 @@ const DiscountBrand = () => {
       .querySelector(".delete_popup")
       .classList.replace("d-flex", "d-none");
   };
-  const openReviewBrand = () => {
-    document
-      .querySelector(".review_popup")
-      .classList.replace("d-none", "d-block");
+  const handleReviewBrand = () => {
+    const data = {
+      discount,
+      brand: brandSelect,
+      expiryDate,
+      startingDate,
+    };
+    reviewDiscountBrand(
+      data,
+      setDiscountError,
+      setDiscountLoading,
+      setReviewProducts
+    );
   };
   const closeReviewPopup = () => {
     document
@@ -86,9 +99,15 @@ const DiscountBrand = () => {
             })}
           </select>
         </div>
+        <p className="error">{discountError}</p>
         <div className="done-btns">
-          {" "}
-          <button onClick={openReviewBrand}>مراجعة المنتجات</button>
+          <button onClick={handleReviewBrand}>
+            {discountLoading ? (
+              <span className="loaderAdd"></span>
+            ) : (
+              "مراجعة المنتجات"
+            )}
+          </button>
         </div>
       </div>
       <div className="view-table-discount">
@@ -200,59 +219,34 @@ const DiscountBrand = () => {
       </div>
       {/* review brand products */}
       <div className="review_popup d-none">
-        <h3>قم بتأكيد المنتجات قبل تنفيذ الخصم</h3>
-        <div className="reviwe_table_popup">
-          <table>
-            <tr>
-              <th>الصورة</th>
-              <th>الاسم</th>
-              <th>الباركود</th>
-              <th>السعر</th>
-              <th>تأكيد</th>
-            </tr>
-            <tr>
-              <td>
-                <img src={image} width={120} />
-              </td>
-              <td>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Amet
-                maiores tempora
-              </td>
-              <td>132456796869645</td>
-              <td>450</td>
-              <td>
-                <input type="checkbox" checked></input>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <img src={image} width={120} />
-              </td>
-              <td>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Amet
-                maiores tempora
-              </td>
-              <td>132456796869645</td>
-              <td>450</td>
-              <td>
-                <input type="checkbox" checked></input>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <img src={image} width={120} />
-              </td>
-              <td>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Amet
-                maiores tempora
-              </td>
-              <td>132456796869645</td>
-              <td>450</td>
-              <td>
-                <input type="checkbox" checked></input>
-              </td>
-            </tr>
-          </table>
+        <div className="review_popup_box">
+          <h3>قم بتأكيد المنتجات قبل تنفيذ الخصم</h3>
+          <div className="reviwe_table_popup">
+            <table>
+              <tr>
+                <th>الصورة</th>
+                <th>الاسم</th>
+                <th>الباركود</th>
+                <th>السعر</th>
+                <th>تأكيد</th>
+              </tr>
+              {reviewProducts.map((item) => {
+                return (
+                  <tr>
+                    <td>
+                      <img src={item.images[0]} width={120} height={200} />
+                    </td>
+                    <td>{item.translation.ar.productName}</td>
+                    <td>{item.productCode}</td>
+                    <td>{item.price}</td>
+                    <td>
+                      <input type="checkbox" defaultChecked="true"></input>
+                    </td>
+                  </tr>
+                );
+              })}
+            </table>
+          </div>
         </div>
         <button>تمت المراجعة</button>
         <button className="close" onClick={closeReviewPopup}>
