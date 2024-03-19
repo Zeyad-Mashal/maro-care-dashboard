@@ -334,7 +334,7 @@ const DiscountBrand = () => {
               />
             </label>
           </div>
-          <div>
+          <div className="brand_udpate">
             <p>{updateBrandSelect}</p>
           </div>
         </div>
