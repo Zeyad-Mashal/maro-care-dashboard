@@ -30,7 +30,13 @@ const Coupon = () => {
   const [disableCouponError, setDisableCouponError] = useState("");
 
   const checkExpiration = (startingDate, expiryDate) => {
-    const currentDate = new Date();
+    let day = new Date().getDate();
+    let month = new Date().getMonth() + 1;
+    let year = new Date().getFullYear();
+    day = day > 9 ? day : "0" + day;
+    month = month > 9 ? month : "0" + month;
+    const date = year + "-" + month + "-" + day;
+    const currentDate = new Date(date);
     const expiry = new Date(expiryDate);
     const starting = new Date(startingDate);
     if (currentDate <= expiry && currentDate >= starting) {

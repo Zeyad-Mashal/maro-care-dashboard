@@ -15,6 +15,9 @@ import RejectedOrdersDetails from './components/OrderSystem/RejectedOrdersDetail
 import AddFilter from './components/Filter/AddFilter';
 import Coupon from './components/Coupon/Coupon';
 import DiscountBrand from './components/Brands/DiscountBrand';
+import ReturnOrders from './components/Returns/ReturnOrders';
+import Login from './components/Login/Login';
+import Admin from './components/Admin/Admin';
 function App() {
   return (
     <div className='App'>
@@ -34,6 +37,9 @@ function App() {
         <Route path="/filter" element={<AddFilter />} />
         <Route path="/coupon" element={<Coupon />} />
         <Route path="/discountbrand" element={<DiscountBrand />} />
+        <Route path="/returns" element={<ReturnOrders />} />
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </div>
   );

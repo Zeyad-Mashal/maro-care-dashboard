@@ -52,6 +52,15 @@ const Navbar = () => {
             <li>
               <Link to={"/discountbrand"}>خصم البراندات</Link>
             </li>
+            <li>
+              <Link to={"/returns"}>المرتجعات</Link>
+            </li>
+            <li>
+              <Link to={"/admin"}>لوحة تحكم Admin</Link>
+            </li>
+            <li>
+              <Link to={"/login"}>تسجيل خروج</Link>
+            </li>
           </ul>
         </div>
       </nav>
