@@ -14,6 +14,8 @@ const DoneOrders = () => {
   const [searchOrderId, setSearchOrderId] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [totalPage, setTotalPage] = useState(0);
   const openRejectedProduct = () => {
     document
       .querySelector(".rejected_check")
@@ -25,10 +27,23 @@ const DoneOrders = () => {
       .classList.replace("d-block", "d-none");
   };
   const getAllDoneOrders = () => {
-    getDoneOrders(setAllOrders, 1);
+    getDoneOrders(setAllOrders, 1, setTotalPage, setCurrentPage);
   };
   const handleSearch = () => {
     getAllDoneSearch(setError, setLoading, setAllOrders, searchOrderId);
+  };
+  const previous = () => {
+    if (currentPage != 1) {
+      const newpage = parseInt(currentPage) - 1;
+      getDoneOrders(setAllOrders, newpage, setTotalPage, setCurrentPage);
+    }
+  };
+
+  const next = () => {
+    if (currentPage != totalPage) {
+      const newpage = parseInt(currentPage) + 1;
+      getDoneOrders(setAllOrders, newpage, setTotalPage, setCurrentPage);
+    }
   };
   return (
     <div className="orders-container">
@@ -113,8 +128,8 @@ const DoneOrders = () => {
       </div>
       {/* pagination */}
       <div className="pagination-controls">
-        <button>التالي</button>
-        <button>السابق</button>
+        <button onClick={next}>التالي</button>
+        <button onClick={previous}>السابق</button>
       </div>
     </div>
   );

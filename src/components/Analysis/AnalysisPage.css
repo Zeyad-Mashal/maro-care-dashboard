@@ -1,20 +1,24 @@
 .container {
   display: flex;
-  width: fit-content;
+  flex-direction: column;
+  width: 100%;
   height: fit-content;
+  margin-right: 12rem;
 }
-.profit,
-.productsSold,
-.things {
+.div {
   background-color: #fff;
-  padding: 2rem;
-  margin: 2rem;
+  padding: 1rem 5rem;
+  margin: 10px;
   border-radius: 10px;
   box-shadow: 6px 6px 6px #aaaaaa;
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  height: 180px;
 }
-.profit h1 {
-  margin-top: -10px;
-  margin-bottom: 1rem;
+.div h3 {
+  margin: 10px;
+  padding: 10px;
 }
 .profit p,
 .productsSold p,
@@ -23,7 +27,26 @@
   font-weight: bold;
   color: #03cb03;
 }
-.productsSold h2,
-.things h2 {
-  margin-bottom: 1rem;
+.content_box {
+  margin: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.container .date_search {
+  margin: 1rem 1rem 0 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.date_search input {
+  width: 300px;
+  font-size: 18px;
+  border: 1px solid #999;
+  outline: none;
+  border-radius: 10px;
+  padding: 5px;
 }

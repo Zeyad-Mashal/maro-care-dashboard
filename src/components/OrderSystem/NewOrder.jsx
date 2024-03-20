@@ -20,6 +20,8 @@ const NewOrder = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [searchOrderId, setSearchOrderId] = useState("");
+  const [currentPage, setCurrentPage] = useState(0);
+  const [totalPage, setTotalPage] = useState(0);
   const opneCheckedproduct = (orderId) => {
     setOrderId(orderId);
     document
@@ -43,7 +45,7 @@ const NewOrder = () => {
       .classList.replace("d-block", "d-none");
   };
   const getAllNewOrders = () => {
-    getNewOrder(setAllOrders, 1);
+    getNewOrder(setAllOrders, 1, setCurrentPage, setTotalPage);
   };
   const checkedOrderNew = () => {
     checkedNew(setCheckedLoading, setCheckedError, setAllOrders, orderId);
@@ -59,6 +61,20 @@ const NewOrder = () => {
   };
   const handleSearch = () => {
     getAllNewSearch(setError, setLoading, setAllOrders, searchOrderId);
+  };
+
+  const previous = () => {
+    if (currentPage != 1) {
+      const newpage = parseInt(currentPage) - 1;
+      getNewOrder(setAllOrders, newpage, setCurrentPage, setTotalPage);
+    }
+  };
+
+  const next = () => {
+    if (currentPage != totalPage) {
+      const newpage = parseInt(currentPage) + 1;
+      getNewOrder(setAllOrders, newpage, setCurrentPage, setTotalPage);
+    }
   };
   return (
     <div className="orders-container">
@@ -140,8 +156,8 @@ const NewOrder = () => {
             </div>
           </div>
           <div className="pagination-controls">
-            <button>التالي</button>
-            <button>السابق</button>
+            <button onClick={next}>التالي</button>
+            <button onClick={previous}>السابق</button>
           </div>
         </>
       )}

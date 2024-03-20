@@ -1,5 +1,5 @@
 const URL = 'https://maro-cares.onrender.com/order/getOrder/';
-const getRejectedOrders = (setAllOrders, pageNumber) => {
+const getRejectedOrders = (setAllOrders, pageNumber, setTotalPage, setCurrentPage) => {
     fetch(`${URL}${pageNumber}?orderStatus=Cancelled`, {
         method: "GET",
         headers: {
@@ -10,6 +10,8 @@ const getRejectedOrders = (setAllOrders, pageNumber) => {
         .then(responseJson => {
             if (responseJson.message == 'success') {
                 setAllOrders(responseJson.orders)
+                setTotalPage(responseJson.totalPage)
+                setCurrentPage(responseJson.currentPage)
             } else {
                 console.log(responseJson.message);
             }

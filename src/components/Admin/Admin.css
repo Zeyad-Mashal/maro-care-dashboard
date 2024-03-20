@@ -1,9 +1,11 @@
 .admin_container {
   margin-right: 12rem;
   width: 100%;
+  position: relative;
   height: 100vh;
 }
 .admin_box {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -79,4 +81,24 @@
   background-color: red;
   color: #fff;
   border-radius: 10px;
+}
+.admin_box .update_admin {
+  position: fixed;
+  top: 10%;
+}
+.admin_box .admin_delete {
+  position: fixed;
+}
+.btns_admin_close {
+  padding: 10px 20px;
+  color: white;
+  text-align: center;
+  border: 1px solid #999;
+  border-radius: 10px;
+  background-color: red;
+  font-weight: bold;
+  font-size: 16px;
+  margin-top: 1rem;
+  transition: 0.3s ease;
+  margin-right: 1rem;
 }

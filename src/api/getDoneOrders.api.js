@@ -1,5 +1,5 @@
 const URL = 'https://maro-cares.onrender.com/order/getOrder/';
-const getDoneOrders = (setAllOrders, pageNumber) => {
+const getDoneOrders = (setAllOrders, pageNumber, setTotalPage, setCurrentPage) => {
     fetch(`${URL}${pageNumber}?orderStatus=Success`, {
         method: "GET",
         headers: {
@@ -10,6 +10,8 @@ const getDoneOrders = (setAllOrders, pageNumber) => {
         .then(responseJson => {
             if (responseJson.message == 'success') {
                 setAllOrders(responseJson.orders)
+                setTotalPage(responseJson.totalPage)
+                setCurrentPage(responseJson.currentPage)
             } else {
                 console.log(responseJson.message);
             }

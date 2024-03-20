@@ -24,7 +24,7 @@ function App() {
 
       <Navbar />
       <Routes>
-        <Route index path="/" element={<OrderDetails />} />
+        <Route path="/" element={<AnalysisPage />} />
         <Route path="/product" element={<Products />} />
         <Route path="/order/new" element={<NewOrder />} />
         <Route path="/order/new/details/:orderId" element={<OrderDetails />} />
