@@ -32,7 +32,8 @@ const Products = () => {
       setServerloading,
       1,
       setTotalPage,
-      setCurrentPage
+      setCurrentPage,
+      setNumberOfProducts
     );
   };
 
@@ -73,6 +74,8 @@ const Products = () => {
   const [colorStockBox, setColorStockBox] = useState([]);
 
   const [discount, setDiscount] = useState("");
+
+  const [numberOfProducts, setNumberOfProducts] = useState("");
 
   const addToColorBox = () => {
     setColorBox((current) => [...current, color]);
@@ -176,7 +179,8 @@ const Products = () => {
           setloading,
           setAllProduct,
           setTotalPage,
-          setCurrentPage
+          setCurrentPage,
+          setNumberOfProducts
         );
       }
     }
@@ -425,7 +429,13 @@ const Products = () => {
   };
 
   const deleteProductFunc = () => {
-    deleteProduct(setDeleteError, setDeleteLoading, setAllProduct, productID);
+    deleteProduct(
+      setDeleteError,
+      setDeleteLoading,
+      setAllProduct,
+      productID,
+      setNumberOfProducts
+    );
   };
 
   const removeColor = (color) => {
@@ -448,7 +458,7 @@ const Products = () => {
     <div className="product-container">
       <div className="product_counter">
         <h5>
-          عدد المنتجات: <span>1000</span>
+          عدد المنتجات: <span>{numberOfProducts}</span>
         </h5>
       </div>
       <div className="header d-flex ">

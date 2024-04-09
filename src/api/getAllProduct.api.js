@@ -1,5 +1,5 @@
 const URL = 'https://maro-cares.onrender.com/product/getAllProduct/';
-const getAllProduct = (setAllProduct, setServerErrors, setServerloading, pageNumber, setTotalPage, setCurrentPage) => {
+const getAllProduct = (setAllProduct, setServerErrors, setServerloading, pageNumber, setTotalPage, setCurrentPage, setNumberOfProducts) => {
     setServerloading(true)
     fetch(`${URL}${pageNumber}`, {
         method: "GET",
@@ -14,6 +14,7 @@ const getAllProduct = (setAllProduct, setServerErrors, setServerloading, pageNum
                 setTotalPage(responseJson.totalPage)
                 setCurrentPage(responseJson.currentPage)
                 setAllProduct(responseJson.products)
+                setNumberOfProducts(responseJson.numberOfProducts)
             } else {
                 setServerErrors(responseJson.message);
                 setServerloading(false)

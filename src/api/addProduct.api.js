@@ -1,6 +1,6 @@
 const URL = 'https://maro-cares.onrender.com/product/addProduct';
 const AccessTOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZGY3MWQ4MjYyOWU2YjUwMGYzM2Q0YSIsImlhdCI6MTcwOTMwMDM1NH0.1PJQpvJ1BduIgSMfeP6G4fYkkNpEcSZ8iVeSEUODmr4';
-const addProduct = (productData, setError, setloading, setAllProduct, setTotalPage, setCurrentPage) => {
+const addProduct = (productData, setError, setloading, setAllProduct, setTotalPage, setCurrentPage, setNumberOfProducts) => {
     setloading(true)
     fetch(URL, {
         method: "POST",
@@ -16,6 +16,7 @@ const addProduct = (productData, setError, setloading, setAllProduct, setTotalPa
                 setAllProduct(responseJson.products)
                 setTotalPage(responseJson.totalPage)
                 setCurrentPage(responseJson.currentPage)
+                setNumberOfProducts(responseJson.numberOfProducts)
                 document.querySelector(".add-prodcut_popup").classList.replace("d-flex", "d-none");
             } else {
                 setError(responseJson.message);
