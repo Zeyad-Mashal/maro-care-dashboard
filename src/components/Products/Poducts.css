@@ -35,6 +35,10 @@
   background-color: #0164aa;
   color: #fff;
 }
+.product-container .add-prodcut_popup {
+  position: fixed;
+  top: 10%;
+}
 .add-prodcut_popup,
 .update-prodcut_popup {
   text-align: center;
@@ -245,6 +249,7 @@ td:last-child {
 }
 .product-container .update-prodcut_popup {
   position: fixed;
+  top: 10%;
 }
 .product-container .delete-product {
   position: fixed;
@@ -412,4 +417,12 @@ td:last-child {
   color: #fff;
   font-size: 20px;
   cursor: pointer;
+}
+.product_counter {
+  margin: 10px 10px 0 0;
+  padding: 0;
+}
+.product_counter span {
+  font-size: 22px;
+  color: #0164aa;
 }

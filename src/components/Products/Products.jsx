@@ -446,6 +446,11 @@ const Products = () => {
 
   return (
     <div className="product-container">
+      <div className="product_counter">
+        <h5>
+          عدد المنتجات: <span>1000</span>
+        </h5>
+      </div>
       <div className="header d-flex ">
         <div className="search-box">
           <input
